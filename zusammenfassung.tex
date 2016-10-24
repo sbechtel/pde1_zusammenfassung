@@ -1,0 +1,338 @@
+\documentclass[11pt,a4paper]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath,amsthm,amssymb,dsfont}
+\usepackage{mathtools}
+\usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{url}
+\usepackage{tikz}
+\usepackage{esint}
+\usepackage{csquotes}
+\usepackage{textcomp}
+
+\usepackage{setspace}
+
+\parindent 0pt
+\linespread{1.5}
+
+% Makros
+
+\newcommand{\N}{\mathbb{N}} % natuerliche Zahlen
+\newcommand{\Z}{\mathbb{Z}} % ganze Zahlen
+\newcommand{\Q}{\mathbb{Q}} % rationale Zahlen
+\newcommand{\R}{\mathbb{R}} % reelle Zahlen
+\newcommand{\K}{\mathbb{K}} % Körper
+\newcommand{\C}{\mathbb{C}} % komplexe Zahlen
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\Sc}{\mathcal{S}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\laplace}{\triangle}
+\newcommand{\circum}{\text{\textasciicircum}}
+
+% Umgebungen für Definitionen, Sätze, usw.
+
+\theoremstyle{plain}
+\newtheorem{thm}{Satz}[section]
+\newtheorem*{lem}{Lemma}
+\newtheorem{cor}[thm]{Korollar}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{ex}{Beispiel}
+\newtheorem*{ntion}{Notation}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{bem}{Bemerkung}
+\newtheorem{bemnumber}[thm]{Bemerkung}
+
+\def\Satzrefname{Satz}
+
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\esssupp}{ess supp}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\loc}{loc}
+\DeclareMathOperator{\pv}{pv}
+\DeclareMathOperator{\grad}{grad}
+
+\begin{document}
+
+\title{Zusammenfassung PDE I}
+\author{Sebastian Bechtel}
+\maketitle
+
+\section{lineare Grundgleichungen}
+
+\subsection{Transportgleichung}
+
+Betrachte $u_t + a\cdot u_x = 0$. \emph{Methode der Charakteristiken}: Aus der DGL folgt, dass eine Lösung konstant längs $s\mapsto (s,as+c)$ ist. Bestimme $u(x,y)$ aus den Anfangswerten durch eine Kurve obiger Form, die durch $(x,y)$ und den Definitionsbereich der Anfangswerte geht.
+
+\subsection{Laplace-Gleichung}
+
+Betrachte $\laplace u = 0$. Nutze Rotationsinvarianz von $\laplace$, um ODE in $r$ zu erhalten. Lösungs heißt \emph{Fundamentallösung des Laplace}. Für $n=2$: $C \log |x|$. Für $n \geq 3$: $C |x|^{2-n}$.
+
+\subsubsection{Poisson-Gleichung}
+
+Betrachte $-\laplace u = f$. Lösung $u(x)\coloneqq (\varphi * f)(x)$. Trick: Schneide Singularität der Fundamentallösung aus dem Faltungsintegral raus.
+
+\subsubsection{Mittelwerteigenschaft}
+
+Eine Funktion  $u\in C^2(\Omega)$ ist harmonisch gdw. Mittelwerteigenschaft $$u(x) = \fint_{B_r(x)} u(y) \, \mathrm{dy}$$ gilt.
+
+\subsubsection{Maximumsprinzip}
+
+Ist $\Omega$ beschränktes Gebiet, $u\in C^2(\Omega) \cap C(\overline{\Omega})$ harmonisch, dann gelten die folgenden Aussagen:
+
+\begin{enumerate}
+    \item \emph{Schwaches Maximumsprinzip}: $\max_{\overline{\Omega}} u = \max_{\partial \Omega} u$.
+    \item \emph{Starkes Maximumsprinzip}: Ist $x_0 \in \Omega$ mit $u(x_0) = \max_{\overline{\Omega}} u$, so ist $u$ konstant.
+\end{enumerate}
+
+\subsubsection{Eindeutigkeit der Lösung des DP}
+
+Betrachte $-\laplace u = f$ in $\Omega$, $u=g$ auf $\partial \Omega$. Sind $u_1,u_2$ Lösungen, so betrachte $w_1=u_1-u_2$, $w_2=u_2-u_1$. Da $w_i$ die Laplace-Gleichung löst, folgt mit dem Maximumsprinzip: $\max_{\overline{\Omega}} u_1-u_2 = \max_{\partial \Omega} w_1 = 0$, also $u_2\leq u_1$ und analog $u_1\leq u_2$.
+
+\subsubsection{Glattheit harmonischer Funktionen}
+
+Ist $u\in C(\Omega)$ mit Mittelwerteigenschaft, so ist $u\in C^\infty(\Omega)$, somit $h$ harmonisch. Beweis: Geschickte Nutzung von Mollifiern.
+
+\subsubsection{Green'sche Funktionen}
+
+Betrachte Poisson-Problem auf beschränktem Gebiet $\Omega$. Leute Lösungsformel her, diese enthält $\frac{\partial u}{\partial \nu}$ (unbekannt). Löse $\laplace \Phi^x = 0$ in $\Omega$, $\Phi^x = \Phi(y-x)$ auf $\partial \Omega$ für alle $x\in\Omega$. Durch $G(x,y)\coloneqq \Phi(y-x)-\Phi^x(y)$ wird \emph{Green-Funktion} definiert. Diese liefert Lösungsformel, die nur bekannte Größen enthält. Problem: Bestimme zu gegebenem Gebiet $\Omega$ die Lösungen $\Phi^x$ der obigen DGL. Idee: Entferne Singularität durch \enquote{Reflexion} aus dem Gebiet.
+
+\subsubsection{Eindeutigkeit des DP mit Energiemethode}
+
+Zeige für $w\coloneqq u_1-u_2$, dass $|\nabla w|=0$ gilt (Green'sche Formeln). Da $w$ am Rand $0$, im inneren konstant und stetig, folgt $u_1=u_2$.
+
+\subsection{Wärmeleitungsgleichung}
+
+Betrachte $u_t-\triangle u = 0$ auf $(0,\infty)\times \R^n$, $u(0,x)=u_0(x)$ auf $\R^n$. Fourier-Trafo in $x$ liefert ODE für $\hat u$, jene ist explizit lösbar, Rücktrafo. liefert Fundamentallösung $G(t,x)\coloneqq (4\pi t)^{-n/2} \, e^{-\frac{|x|^2}{4t}}$ für $t>0$, sonst $0$, genannt \emph{Gauß-Kern}. Die Faltung $u(t,x)\coloneqq (G_t*u_0)(x)$ liefert Lösung. Der Gauß-Kern glättet, es gilt $u\in C^\infty$.
+
+\subsubsection{Mittelwerteigenschaft}
+
+Es gilt eine Mittelwerteigenschaft für Heatballs im parabolischen Zylinder. Hängt wegen der Heatball-Definition nur von vergangenen Zeiten ab.
+
+\subsubsection{Maximumsprinzip}
+
+Wie bei $\triangle$, jedoch nun mit parabolischem Zylinder und parabolischem Rand.
+
+\subsubsection{Eindeutigkeit der Lösung der Wärmeleitungsgleichung}
+
+Wie bei der Poisson-Gleichung mittels Maximumsprinzip.
+
+\subsection{Wellengleichung}
+
+Betrachte $u_{tt}-\triangle u = 0$ in $\R\times \R^n$. Fall $n=1$: Reduziere auf Transportgleichung. Lösung ist so glatt wie Anfangswert. Fall $n$ ungerade: Reduziere auf parabolische Gleichung. Rechnen und Laplace-Trafo liefert Lösungsformel, in $n=3$ \emph{Kirschhoff'sche Formel} genannt. Lösung ist $C^2$, Regularitätsforderung steigt in der Dimension, die Gleichung glättet also nicht! Lösung hängt vom Anfangswert nur auf Sphären ab. Fall $n=2$: Absteigemethode, löse $n=3$-Fall aus. Lösung hängt vom Anfangswert auf Bällen ab. Die Lösungen unterscheiden sich also fundamental in geraden und ungeraden Raumdimensionen!
+
+\subsubsection{Eindeutigkeit der Lösung der Wellengleichung}
+
+Energiemethode.
+
+\section{schwache Lösungstheorie}
+
+\subsection{Sobolevräume}
+
+Für $\Omega \subseteq \R^n$ offen ist $H^1(\Omega)$ der Sobolevraum zu $p=2$. Schwache Ableitungen sind eindeutig bestimmt (Fundamentallemma). Wir definieren als Teilraum $H^1_0(\Omega)\coloneqq \overline{C_c^\infty}^{\norm{\cdot}_{H^1(\Omega)}}$. Es sind $H^1(\Omega)$ sowie $H^1_0(\Omega)$ Hilberträume. Für $\Omega=(a,b)$ haben die Funktionen stetige Repräsentanten und es gilt der Hauptsatz.
+
+\subsection{schwache Lösung des Dirichlet-Problem}
+
+Betrachte wieder $-\laplace u = f$ in $\Omega$, $u=0$ auf $\partial\Omega$. Eine Funktion $u\in H^1_0(\Omega)$ mit $\int \nabla u \nabla v = \int fv$ für alle $v\in H^1_0(\Omega)$ heißt \emph{schwache Lösung des (DP)}. 
+
+Hat $\Omega$ glatten Rand, so gilt $u\in H^1_0(\Omega)$ gdw. $u=0$ auf $\partial\Omega$ für $u\in H^1(\Omega)$ (im Spursinne).
+
+Klassische Lösung ist schwache Lösung: Aus der Randwertbedingung folgt $u\in H^1_0(\Omega)$. Bedingung der schwachen Lösung auf $C_c^\infty(\Omega)$ nachrechnen, dann Dichtheitsargument.
+
+Existenz und Eindeutigkeit der schwachen Lösung: Es gilt für $u\in H^1_0(\Omega)$ die Poincare-Ungleichung $\norm{u}_{L^2} \leq C \norm{\nabla u}_{L^2}$, wobei $C$ nur von $\Omega$ abhängt. Die Formen $a(u,v)\coloneqq \int \nabla u \nabla v$ sowie $f(v)\coloneqq \int fv$ sind beschränkt. Außerdem zeigt man durch $|\nabla u|^2 = 1/2|\nabla u|^2 + 1/2|\nabla u|^2$ und Poincare, dass $a$ koerziv ist, also liefert Lax-Milgram die Existenz einer eindeutigen Schwachen Lösung.
+
+Regularität: Für $f\in H^m(\Omega)$ gilt, dass die schwache Lösung $u$ des zugehörigen (DP) die Regularität $H^{m+2}(\Omega)$ besitzt.
+
+Rückkehr zur klassischen Lösung: Es gilt ein Lemma von Sobolev: ist $m > n/2 + k$ und $u\in H^m(\Omega)$, so gibt es $g\in C^k(\Omega)$ mit $g=u$ f.ü. Beweisidee: Fouriertrafo und $u\in H^m(\Omega)$ gdw. $(1+|\xi|^2)^{m/2} |\hat f(\xi)| \in L^2(\R^n)$. Das die schwache Lösung gleich der starken Lösung ist, folgt dann aus dem Fundamentallemma.
+
+\section{Distributionen}
+
+Setze $\D(\Omega)\coloneqq C_c^\infty(\Omega)$. Es gelte $\varphi_j \to \varphi$ in $\D(\Omega)$, falls es $K\subseteq \Omega$ kompakt gibt mit $\supp \varphi_j \subseteq K$ für alle $j$ und $D^\alpha \varphi_j \to D^\alpha \varphi$ gleichmäßig für alle Multiindices $\alpha$.
+
+Definiere $\D'(\Omega)\coloneqq \{ T: \D(\Omega) \to \C \text{ stetig, linear} \}$. Die Elemente von $\D'(\Omega)$ heißen \emph{Distributionen}. Beispiele: Ist $a\in \Omega$, so definiert $\langle \delta_a, \varphi \rangle \coloneqq \varphi(a)$ die \emph{Dirac-Delta-Distribution in $a$}, speziell: $\delta \coloneqq \delta_0$. Ist $f\in L^1_{\loc}(\Omega)$, dann ist die \emph{reguläre Distribution zu $f$} definiert durch $\langle T_f, \varphi \rangle \coloneqq \int f\varphi \, \mathrm{dx}$. Es gilt $1/x\not\in L^1_{\loc}(\R)$; Definiere Distribution über Cauchy-Hauptwert: $\langle \pv 1/x, \varphi \rangle \coloneqq \lim_{\varepsilon \to 0} \int_{|x|\geq \varepsilon} \varphi(x)/x \, \mathrm{dx}$.
+
+Der Raum $\D'(\Omega)$ trägt die schwach-*-Topologie. Beispiele: $f_j\to f$ in $L^1_{\loc}$, dann $T_{f_j}\to T_f$ in $\D'(\Omega)$. Ist $\varphi$ Mollifier, so gilt $T_{\varphi_\varepsilon}\to \delta$.
+
+\subsection{Operationen auf $\D'(\Omega)$}
+
+\begin{enumerate}
+    \item Ableitung: $\langle D^\alpha T, \varphi \rangle \coloneqq (-1)^{|\alpha|} \langle T, D^\alpha \varphi \rangle$.
+    \item Multiplikation mit $f\in C^\infty$: $\langle f\cdot T, \varphi \rangle \coloneqq f(0) \langle T, \varphi \rangle$.
+\end{enumerate}
+
+Beispiele zur Ableitung: Ist $|\alpha| \leq k$, $f\in H^k$, dann: $D^\alpha T_f = T_{D^\alpha f}$, für die \emph{Heavyside-Funktion} $H(x)\coloneqq 1$, falls $x>0$, sonst $0$, gilt $H'=\delta$, für die Delta-Distribution gilt wiederum $\langle D^\alpha \delta, \varphi \rangle = (-1)^{|\alpha|} D^\alpha \varphi(0)$.
+
+\subsection{Faltung}
+
+Idee: Für $f\in L^1_{\loc}$, $\varphi\in \D$ ist $(f*\varphi)(x)\coloneqq \int f(y)\varphi(x-y) \, \mathrm{dy}$. Es ist $x-y$ eine Spiegelung und Translation um $x$ von $y$. Definiere Spiegelung und Translation auf Distributionen und verallgemeinere zu $(T*\varphi)(x)\coloneqq \langle T, \tau_x \tilde\varphi \rangle$, wobei $\tilde f(y) \coloneqq f(-y)$ sowie $\tau_x f(y) \coloneqq f(y-x)$. Es gilt $(T*\varphi)\in C^\infty$, $D_j (T*\varphi) = (D_j T)*\varphi = T*(D_j \varphi)$.
+
+\subsubsection{Fundamentallösungen}
+
+Sei $A$ Differentialoperator, $f\in \D(\R^n)$. Ist $T$ Distribution mit $AT=\delta$, denn heißt $T$ \emph{Fundamentallösung} von $A$ und $u\coloneqq T*f \in C^\infty(\R^n)$ löst $Au=f$ distributionell. Es gilt der Satz von \emph{Milgrange-Ehrenpreis}: Jeder Differentialoperator mit konstanten Koeffizienten hat eine Fundamentallösung.
+
+\subsubsection{Träger von Distributionen}
+
+Sei $T\in \D'(\Omega)$, definiere $0_T\coloneqq \{ x\in\Omega: \text{ es ex. offene Umgebung } V \text{ von } x \text{ mit } T_V = 0 \}$, wobei $\langle T_V, \varphi \rangle \coloneqq \langle T, \tilde\varphi \rangle$ mit $\varphi\in \D'(V)$, $\tilde\varphi$ Fortsetzung von $\varphi$ auf $\Omega$ durch $0$. Setze $\supp T\coloneqq \Omega \setminus 0_T$, diese Menge heißt \emph{Träger} von $T$. Beispiele: Für $f\in L^1_{\loc}(\Omega)$ gilt $\supp T_f = \esssupp f$. Für $x\in\Omega$ gilt $\supp \delta_x = \{ x \}$. Für $T\in \D'(\Omega)$, $\varphi \in \D$ gilt: Ist $\supp T \cap \supp \varphi = \emptyset$, dann $\langle T, \varphi \rangle = 0$.
+
+Definiere $\E(\Omega) \coloneqq C^\infty(\Omega)$. Es gelte $\varphi_j \to \varphi$ in $\E(\Omega)$, falls für ein $K\subseteq \Omega$ kompakt gilt: $\|D^\alpha \varphi_j - D^\alpha \varphi \|_{C(K)} \to 0$.  Identifiziere $\E'(\Omega)$ mit den Distributionen mit kompaktem Träger.
+
+\subsubsection{Faltung von Distributionen mit kompaktem Träger}
+
+Seien $S,T\in \D'(R^n)$ und mindestens eine habe kompakten Träger, dann definiere die Faltung durch $\langle S*T, \varphi \rangle \coloneqq (S*(T*\tilde\varphi))(0)$ wobei $\varphi\in\D$. Hat immer höchstens eine Distribution keinen kompakten Träger, so gelten die bekannten Regeln (Kommutativität, Assoziativität, Summe der Träger, ...).  Sind die Träger nicht kompakt, so gilt Assoziativität nicht: $1*(\delta'*H)=1*\delta=1\neq 0=0*H=(1*\delta')*H$.
+
+\subsection{Schwartz-Raum}
+
+Sei $\Sc\coloneqq \Sc(\R^n)\coloneqq \{ f\in C^\infty(\R^n): |f|_{\alpha,\beta} \coloneqq \sup |x^\beta D^\alpha f| < \infty \text{ für alle Multiindices } \alpha, \beta \}$ der \emph{Schwartz-Raum}. Definiere $|f|_m \coloneqq \sup_{|\alpha|,|\beta| \leq m} |f|_{\alpha,\beta}$. Es konvergiere $f_j \to f$ in $\Sc$, falls $|f_n-f|_m \to 0$ für alle $m\in \N$. Es gilt offensichtlich $\D \subseteq \Sc$, aber $\D \neq \Sc$, denn $x\mapsto e^{-|x|^2} \in \Sc\setminus \D$.
+
+
+\subsubsection{Fouriertrafo auf $S$}
+
+Definiere zu $u$ die (anti-symmetrische) Fouriertrafo durch $\hat u(\xi)\coloneqq \int e^{-ix\xi}u(x) \, \mathrm{dx}$ für $\xi\in\R^n$. Die Fouriertrafo ist Isomorphismus von $\Sc$ nach $\Sc$, $(\hat \cdot )^{-1} = \check\cdot$.
+
+Es ist $\Sc$ abgeschlossen unter Faltung und Multiplikation. Es gilt der Faltungssatz $(f*g)^{\mbox{\textasciicircum}} = \hat f \cdot \hat g$ sowie $(f\cdot g)^{\mbox{\textasciicircum}} = (2\pi)^{-n} \, \hat f \cdot \hat g$ sowie die Ableitungsregeln $(D^\alpha u)^\circum(\xi) = i^{|\alpha|} \xi^\alpha \hat u(\xi)$ als auch $(x^\alpha u)^\circum(\xi) = (-i)^{|\alpha|} D^\alpha \hat u(\xi)$. Es gilt die \emph{Parseval/Plancherel} Gleichung: $\int f\bar g \, \mathrm{dx} = (2\pi)^{-n} \int \hat f \bar{\hat g} \, \mathrm{d\xi}$.
+
+\subsubsection{Fouriertrafo auf $L^2$}
+
+TODO
+
+\subsection{Temperierte Distributionen}
+
+Betrachte den Dualraum $\Sc'$ von $\Sc$. Die Elemente heißen temperierte Distributionen. Es gilt $\Sc'\neq \D'$, denn $e^x\in \Sc'$, jedoch $e^x\, e^{ie^x}$, also auch nicht $L^1_{\loc} \hookrightarrow \Sc'$. Wir statten $\Sc'$ mit schwach-*-Topologie aus.
+
+Sei $p$ Polynom, $\psi\in \Sc$, dann sind folgende Operationen auf $\Sc'$ definiert:
+
+\begin{itemize}
+    \item Multiplikation mit Polynom: $\langle pT, \varphi \rangle \coloneqq \langle T, p\varphi \rangle$.
+    \item Multiplikation mit Schwartz-Funktion: $\langle \psi T, \varphi \rangle \coloneqq \langle T, \psi\varphi \rangle$.
+    \item Fouriertrafo: $\langle \hat T, \varphi \rangle \coloneqq \langle T, \hat\varphi \rangle$.
+    \item Ableitung: $\langle D^\alpha T, \varphi \rangle \coloneqq (-1)^{|\alpha|} \langle T, D^\alpha \varphi \rangle$.
+\end{itemize}
+
+Die Fouriertrafo ist Isomorphismus $\Sc'\to\Sc'$. Es gelten folgende Regeln:
+
+\begin{itemize}
+    \item $\F(D^\alpha T) = (ix)^\alpha \F(T)$,
+    \item $\F(x^\alpha T) = (-i)^{|\alpha|} D^\alpha \F(T)$,
+    \item für $T\in \Sc$ gilt: $T_{\hat S} = \widehat T_S$ und
+    \item für $R\in \Sc'$ mit kompaktem Träger gilt: $(T*R)\in \Sc'$ und $\F(T*R)=\F(T)\F(R)$.
+\end{itemize}
+
+\subsubsection{Beispiele für die Fouriertrafo auf $\Sc'$}
+
+\begin{itemize}
+    \item $\hat\delta = 1$,
+    \item $p(x)=\sum_{|\alpha| \leq m} a_\alpha (x^\alpha 1)$ Polynom, dann $\hat p = \sum_{|\alpha| \leq m} a_\alpha i^{|\alpha|} D^\alpha \delta$.
+\end{itemize}
+
+\subsubsection{Fundamentallösungen}
+
+Ist $AT=\delta$, dann $p(i\xi)\hat T = 1$, löse algebraische Gleichung. Rücktrafo liefert Fundamentallösung.
+
+\subsection{Fouriertransformation auf verschiedenen Räumen}
+
+Es gilt $\F: L^1(\R^n) \to C_0(\R^n)$ nach Riemann-Lebesgue mit $\F(f)(x)\coloneqq \int_{\R^n} e^{i\langle x,y \rangle}f(y) \, \mathrm{dy}$. Eingeschränkt auf $L^1(\R^n) \cap L^2(\R^n)$ ist der Wertebereich $L^2$ und die Abbildung ist isometrisch. Es gibt eine Fortsetzung zu einem unitären Operator $\F: L^2(\R^n)\to L^2(\R^n)$. Von $\Sc\to \Sc$ ist $\F$ ebenfalls Isomorphismus, somit auch von $\Sc'\to \Sc'$.
+
+Für $f,g\in L^1(\R^n)$ respektive $f,g\in \Sc$ gilt $\int \hat f g = \int f \hat g$ (zum Beweis wendet man Fubini auf die konkrete Darstellung der Fourier-Trafo an).
+
+Die Ableitungsregel gilt auf $\Sc$ immer und auf $H^k$ für Multiindices $\alpha$ mit $|\alpha| \leq k$.
+
+\section{nichtlineare Randwertprobleme}
+
+\subsection{Fixpunktsätze}
+
+Es gilt der Brownsche Fixpunktsatz: Ist $B$ die abgeschlossene Einheitskugel in $\R^n$ und $T:B\to B$ stetig, so besitzt $T$ einen Fixpunkt. Man zeigt damit den Fixpunktsatz von Schauder: Sei $X$ B.R. und $K\subseteq X$ nicht-leer, kompakt, konvex sowie $T:K\to K$ stetig, so besitzt $T$ einen Fixpunkt. Es gilt außerdem folgende Variante: Sei $X$ B.R., $T:X\to X$ stetig und kompakt sowie $\{ u\in X: u = \alpha Tu \text{ für ein } \alpha \in [0,1]\}$ beschränkt, dann besitzt $T$ einen Fixpunkt.
+
+\subsubsection{Anwendung auf nicht-lineares Problem}
+
+Betrachte $-\laplace u = f(u), u|_\Omega = 0$, wobei $f$ (Lipschitz?) stetig, beschränkt und $\Omega$ beschränkt ist. Beweisidee: Finde $M_0$ sodass $C\coloneqq \{ u\in H^1_0(\Omega): \|\nabla u\| \leq M_0\}$ nicht-leere, kompakte, konvexe Menge ist. $T = (-\nabla)^{-1}(f(\cdot)): H^1_0\to H^1_0$ ist stetig, Schauder liefert Fixpunkt.
+
+\subsection{Methode der Unter- und Oberlösungen}
+
+Löse wieder $-\laplace u = f(u)$ in $\Omega$, $u=0$ auf $\partial\Omega$. Wir setzen die Existenz von Unter- und Oberlösungen voraus, um eine Lösung zu ermitteln, die - mehr oder weniger - konstruktiv ist, und zwar durch monotone Limiten.
+
+Eine Funktion $\underline{u}\in H^1(\Omega)$ heißt \emph{schwache Unterlösung}, falls für $v\in H^1_0(\Omega)$ mit $v\geq 0$ fast überall gilt, dass $\int \nabla \underline{u} \nabla v \leq \int f(\underline{u})v$, analog \emph{schwache Oberlösung}.
+
+\subsection{Nichtexistenz glatter Lösungen von nichtlinearen Gleichungen}
+
+Durch Ausnutzung von Haupteigenwert und Haupteigenfunktion von $-\laplace$ lässt sich zeigen, dass $u_t -\laplace u = u^2$ in $(0,T)\times \Omega$, $u=0$ auf $(0,T)\times \partial\Omega$, $u(0,x)=u_0(x)$ in $\Omega$ keine glatte Lösung besitzt, indem man ein Blowup-Argument macht.
+
+\section{Maximumsprinzipien}
+
+\subsection{elliptische Operatoren}
+
+Betrachten \emph{elliptische Operatoren 2. Ordnung}, d.h. Operatoren der Form
+
+$$Au(x)\coloneqq -\sum_{i,j=1}^n a_{i,j}(x)\partial_j \partial_i u(x) + \sum_{i=1}^n b_i(x) \partial_i u(x) +c(x) u(x),$$
+
+wobei wir $a_{i,j}=a_{j,i}$ annehmen.
+
+Der Operator $A$ heißt \emph{gleichmäßig elliptisch}, falls ein $\mu > 0$ existiert, mit
+
+$$\sum_{i,j=1}^n a_{i,j}(x)\xi_i\xi_j \geq \mu |\xi|^2.$$
+
+Es gilt das \emph{schwache Maximumsprinzip}: Ist $\Omega$ beschränktes Gebiet und $A$ gleichmäßig elliptisch mit stetigen Koeffizienten, wobei $c\equiv 0$, dann gilt für $u\in C^2(\Omega) \cap C(\overline{\Omega})$ mit $Au \leq 0$ in $\Omega$, dass das Maximum auf dem Rand von $\Omega$ angenommen wird.
+
+Das \emph{Lemma von Hopf} besagt, dass für ein $u\in C^2(\Omega) \cap C^1(\overline{\Omega})$ mit $Au\leq 0$ in $\Omega$ und $x_0\in \partial\Omega$ mit $u(x_0) > u(x)$ für $x\in \Omega$ gilt, dass $\frac{\partial u}{\partial \nu}(x) > 0$, wobei die innere Kugelbedingung in $x_0$ gelten soll, d.h. es gibt eine offene Kugel $K\subseteq \Omega$ mit $x_0 \in \partial K$.
+
+Aus dem Lemma von Hopf folgt das \emph{starke Maximumsprinzip}: Sind $u,A,\Omega$ wie im schwachen Maximumsprinzip und wird das Maximum in einem inneren Punkt angenommen, so ist $u$ konstant in $\Omega$.
+
+\subsection{parabolische Operatoren}
+
+Betrachte Operator
+
+$$Lu(t,x)\coloneqq \partial_t u(t,x) -\sum_{i,j=1}^n a_{i,j}(t,x)\partial_j \partial_i u(t,x) + \sum_{i=1}^n b_i(t,x) \partial_i u(t,x)$$
+
+auf Gebiet $G\subseteq \R_+ \times \R^n$ mit stetigen Koeffizienten und $a_{i,j}=a_{j,i}$.
+
+Der Operator $L$ heißt \emph{gleichmäßig parabolisch}, falls ein $\mu > 0$ existiert, mit
+
+$$\sum_{i,j=1}^n a_{i,j}(t,x)\xi_i\xi_j \geq \mu |\xi|^2.$$
+
+Es gilt das \emph{schwache Maximumsprinzip}: Ist $u\in C^2(G) \cap C(\overline{G})$ mit $Lu \leq 0$, so nimmt $u$ sein Maximum auf dem parabolischen Rand an.
+
+Außerdem gilt ein starkes Maximumsprinzip von Hopf: Wird in einem inneren Punkt das Maximum angenommen, so auch in jedem Punkt, der durch horizontale und nach oben gerichtete vertikale Segmente verbunden werden kann.
+
+\section{Halbgruppentheorie}
+
+\subsection{Brownsche Bewegung}
+
+Beispiel für Brownsche Bewegung: $P(t,x,y)\coloneqq G_t(x-y)$. Auf $BUC(\R^n)$ definiert $(T(t)f)(x)\coloneqq \int P(t,x,y)f(y) \, \mathrm{dy}$ eine stark stetige Halbgruppe. Für ein $c > 0$ ist $A=c\cdot\triangle$ der Erzeuger dieser Halbgruppe, insbesondere $P(t,x,y) = G_{ct}(x-y)$.
+
+\subsection{abstraktes Cauchy-Problem}
+
+Betrachte \emph{abstraktes Cauchy-Problem}: $X$ Banachraum, $A:D(A) \to X$ Operator, dann soll $u: [0,\infty) \to X$ gefunden werden mit $u'(t) = Au(t)$ sowie $u(0)=u_0$ für ein $u_0\in X$. Beispiel: $X=L^2(\Omega)$, $A=\triangle$, $D(A)=H^2(\Omega)$. Aus einer PDE wird also eine banachraumwertige ODE.
+
+\subsection{$C_0$-Halbgruppen}
+
+Eine Familie $T\coloneqq (T(t))_{t>0}$ von beschränkten, linearen Operatoren auf $X$ heißt \emph{$C_0$-Halbgruppe} auf $X$, falls gilt: $T(0)=\id$, $T(s+t)=T(s)T(t)$ sowie für alle $f\in X$ gilt: $t\mapsto T(t)f$ stetig. Man nennt $T$ \emph{Kontraktionshalbgruppe}, falls $\|T(t)\| \leq 1$ für alle $t\geq 0$ gilt.
+
+\subsection{Generator einer Halbgruppe}
+
+Setze $D(A)\coloneqq \{ f\in X: \lim_{t\to 0} \frac{1}{t}(T(t)f-f) \, \text{existiert in } X \}$ und definiere $Af \coloneqq \lim_{t\to 0} \frac{1}{t}(T(t)f-f)$ auf $D(A)$. Dann heißt $(D(A),A)$ der Generator von $T$.
+
+Es gilt $\frac{d}{dt} T(t)f = AT(t)f$, also ist $u(t)\coloneqq T(t)f$ Lösung des abstrakten Cauchy-Problems von $A$ zum Anfangswert $f$.
+
+Der Generator ist dicht definiert und abgeschlossen. Beweisidee: Dicht definiert: Zeige $\int_0^t T(s)f \, \mathrm{ds}$ ist in $D(A)$, dann konvergiert $\frac{1}{t} \int_0^t T(s)f \, \mathrm{ds}$ gegen $f$. Abgeschlossen: Schreibe $T(t)f_n-f_n$ via Hauptsatz und nutze, dass $\frac{d}{dt} T(t)f_n$ die DGL löst.
+
+\subsection{Hille-Yosida-Theorem}
+
+Sei $A$ ein dicht definierter Operator auf $X$. Dann erzeugt $A$ eine $C_0$-Halbgruppe mit $\|T(t)\| \leq 1$ gdw. $(0,\infty) \subseteq \rho(A)$ und $\|(\lambda-A)^{-1}\| \leq \frac{1}{\lambda}$ für alle $\lambda > 0$. 
+
+Beweisidee: Hinrichtung: Zeige $R_\lambda f\coloneqq \int_{0}^{\infty} e^{-\lambda t}T(t)f \, \mathrm{dt}$ ist die Resolvente zu $\lambda$ von $A$ ausgewertet an $f$. Für jene Darstellung folgen die Eigenschaften leicht. Rückrichtung: Regularisiere $A$ durch den beschränkten Operator $A_\lambda \coloneqq \lambda A (\lambda-A)^{-1}$. Es konvergiert $A_\lambda$ stark gegen $A$, $T_\lambda(t) \coloneqq e^{tA_\lambda}$ definiert stark stetige Kontraktionshalbgruppe zu $A_\lambda$. Es konvergiert $T_\lambda$ gegen eine Halbgruppe $T$, dessen Generator $A$ ist.
+
+\subsection{Anwendung Hille-Yosida auf parabolisches Problem}
+
+Löse das abstrakte Cauchy-Problem durch Anwendung von Hille-Yosida. Resolventenbedingung wird auf Lösung der Resolventengleichung reduziert, für die es schwache Lösungstheorie gibt. Normabschätzung folgt aus der Ungleichung $a(u,u) \geq \alpha \|u\|_{H^1_0}^2 - \gamma \|u\|_{L^2}^2$. Nach Hille-Yosida gibt es also zu $A$ eine stark-stetige Halbgruppe, die Lösung des abstrakten Cauchy-Problems ist.
+
+
+\end{document}
