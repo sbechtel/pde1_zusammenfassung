@@ -161,7 +161,7 @@ Hat $\Omega$ glatten Rand, so gilt $u\in H^1_0(\Omega)$ gdw. $u=0$ auf $\partial
 
 Klassische Lösung ist schwache Lösung: Aus der Randwertbedingung folgt $u\in H^1_0(\Omega)$. Bedingung der schwachen Lösung auf $C_c^\infty(\Omega)$ nachrechnen, dann Dichtheitsargument.
 
-Existenz und Eindeutigkeit der schwachen Lösung: Es gilt für $u\in H^1_0(\Omega)$ die Poincare-Ungleichung $\norm{u}_{L^2} \leq C \norm{\nabla u}_{L^2}$, wobei $C$ nur von $\Omega$ abhängt. Die Formen $a(u,v)\coloneqq \int \nabla u \nabla v$ sowie $f(v)\coloneqq \int fv$ sind beschränkt. Außerdem zeigt man durch $|\nabla u|^2 = 1/2|\nabla u|^2 + 1/2|\nabla u|^2$ und Poincare, dass $a$ koerziv ist, also liefert Lax-Milgram die Existenz einer eindeutigen Schwachen Lösung.
+Existenz und Eindeutigkeit der schwachen Lösung: Es gilt für $u\in H^1_0(\Omega)$ die Poincare-Ungleichung $\norm{u}_{L^2} \leq C \norm{\nabla u}_{L^2}$, wobei $C$ nur von $\Omega$ abhängt. Die Formen $a(u,v)\coloneqq \int \nabla u \nabla v$ sowie $f(v)\coloneqq \int fv$ sind beschränkt. Außerdem zeigt man durch $|\nabla u|^2 = 1/2|\nabla u|^2 + 1/2|\nabla u|^2$ und Poincare, dass $a$ koerziv ist, also liefert Lax-Malgram die Existenz einer eindeutigen Schwachen Lösung.
 
 Regularität: Für $f\in H^m(\Omega)$ gilt, dass die schwache Lösung $u$ des zugehörigen (DP) die Regularität $H^{m+2}(\Omega)$ besitzt.
 
@@ -190,7 +190,7 @@ Idee: Für $f\in L^1_{\loc}$, $\varphi\in \D$ ist $(f*\varphi)(x)\coloneqq \int 
 
 \subsubsection{Fundamentallösungen}
 
-Sei $A$ Differentialoperator, $f\in \D(\R^n)$. Ist $T$ Distribution mit $AT=\delta$, denn heißt $T$ \emph{Fundamentallösung} von $A$ und $u\coloneqq T*f \in C^\infty(\R^n)$ löst $Au=f$ distributionell. Es gilt der Satz von \emph{Milgrange-Ehrenpreis}: Jeder Differentialoperator mit konstanten Koeffizienten hat eine Fundamentallösung.
+Sei $A$ Differentialoperator, $f\in \D(\R^n)$. Ist $T$ Distribution mit $AT=\delta$, denn heißt $T$ \emph{Fundamentallösung} von $A$ und $u\coloneqq T*f \in C^\infty(\R^n)$ löst $Au=f$ distributionell (aber Lösung ist eine reguläre Distribution!). Es gilt der Satz von \emph{Milgrange-Ehrenpreis}: Jeder Differentialoperator mit konstanten Koeffizienten hat eine Fundamentallösung.
 
 \subsubsection{Träger von Distributionen}
 
@@ -219,7 +219,7 @@ TODO
 
 \subsection{Temperierte Distributionen}
 
-Betrachte den Dualraum $\Sc'$ von $\Sc$. Die Elemente heißen temperierte Distributionen. Es gilt $\Sc'\neq \D'$, denn $e^x\in \Sc'$, jedoch $e^x\, e^{ie^x}$, also auch nicht $L^1_{\loc} \hookrightarrow \Sc'$. Wir statten $\Sc'$ mit schwach-*-Topologie aus.
+Betrachte den Dualraum $\Sc'$ von $\Sc$. Die Elemente heißen temperierte Distributionen. Es gilt $\Sc'\neq \D'$, denn $e^x\in \Sc'$, jedoch $e^x\, e^{ie^x} \not\in \Sc'$, also auch nicht $L^1_{\loc} \hookrightarrow \Sc'$. Wir statten $\Sc'$ mit schwach-*-Topologie aus.
 
 Sei $p$ Polynom, $\psi\in \Sc$, dann sind folgende Operationen auf $\Sc'$ definiert:
 
