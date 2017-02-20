@@ -76,11 +76,15 @@ Betrachte $u_t + a\cdot u_x = 0$. \emph{Methode der Charakteristiken}: Aus der D
 
 \subsection{Laplace-Gleichung}
 
-Betrachte $\laplace u = 0$. Nutze Rotationsinvarianz von $\laplace$, um ODE in $r$ zu erhalten. Lösungs heißt \emph{Fundamentallösung des Laplace}. Für $n=2$: $C \log |x|$. Für $n \geq 3$: $C |x|^{2-n}$.
+Betrachte $\laplace u = 0$. Lösungen heißen \emph{harmonische Funktionen}. Nutze Rotationsinvarianz von $\laplace$, um ODE in $r$ zu erhalten. Nichttriviale Lösung heißt \emph{Fundamentallösung des Laplace}. Für $n=2$: $C \log |x|$, für $n \geq 3$: $C |x|^{2-n}$ (jeweils für $x\in \R \setminus \{0\}$, Ansatz benötigt Differenzierbarkeit von $r=|x|$).
 
-\subsubsection{Poisson-Gleichung}
+\subsubsection{Anschauung: harmonische Funktionen auf $\R$}
 
-Betrachte $-\laplace u = f$. Lösung $u(x)\coloneqq (\varphi * f)(x)$. Trick: Schneide Singularität der Fundamentallösung aus dem Faltungsintegral raus.
+Sei $f: \R \to \R$ harmonisch, also $f''=0$ auf $\R$. Dann ist $f$ konvex und konkav. Betrachte $f$ eingeschränkt auf $[a,b]$. Dann muss der Graph von $f$ oberhalb und unterhalb der Verbindungslinie zwischen $f(a)$ und $f(b)$ liegen, also ist $f$ affin linear. Somit ist klar, dass $f$ entweder konstant ist, oder die Extrema am Rand angenommen werden. Außerdem rechnet man leicht $f(x)=\frac{1}{2h} \int_{x-h}^{x+h} f(y) \, \mathrm{d}y$ nach, also gilt die Mittelwerteigenschaft.
+
+\subsubsection{Poisson-Gleichung (auf dem Ganzraum)}
+
+Betrachte $-\laplace u = f$, wobei $f\in C_c^2(\R^n)$. Eine Lösung ist gegeben durch $u(x)\coloneqq (\varphi * f)(x)$. Trick: Schneide Singularität der Fundamentallösung aus dem Faltungsintegral raus.
 
 \subsubsection{Mittelwerteigenschaft}
 
@@ -95,6 +99,8 @@ Ist $\Omega$ beschränktes Gebiet, $u\in C^2(\Omega) \cap C(\overline{\Omega})$ 
     \item \emph{Starkes Maximumsprinzip}: Ist $x_0 \in \Omega$ mit $u(x_0) = \max_{\overline{\Omega}} u$, so ist $u$ konstant.
 \end{enumerate}
 
+Beweis: Starkes Maximumsprinzip folgt aus der MWE: $|u(x_0)| \leq \fint_{B_r(x)} |u(y)| \, \mathrm{d}y \leq \fint_{B_r(x)} |u(x_0)| \, \mathrm{d}y = |u(x_0)|$, also muss $u$ konstant auf dem Ball sein, also durch Ausschöpfung auf dem Gebiet. Schwaches Maximumsprinzip folgt unmittelbar aus dem starken.
+
 \subsubsection{Eindeutigkeit der Lösung des DP}
 
 Betrachte $-\laplace u = f$ in $\Omega$, $u=g$ auf $\partial \Omega$. Sind $u_1,u_2$ Lösungen, so betrachte $w_1=u_1-u_2$, $w_2=u_2-u_1$. Da $w_i$ die Laplace-Gleichung löst, folgt mit dem Maximumsprinzip: $\max_{\overline{\Omega}} u_1-u_2 = \max_{\partial \Omega} w_1 = 0$, also $u_2\leq u_1$ und analog $u_1\leq u_2$.
@@ -105,7 +111,7 @@ Ist $u\in C(\Omega)$ mit Mittelwerteigenschaft, so ist $u\in C^\infty(\Omega)$, 
 
 \subsubsection{Green'sche Funktionen}
 
-Betrachte Poisson-Problem auf beschränktem Gebiet $\Omega$. Leute Lösungsformel her, diese enthält $\frac{\partial u}{\partial \nu}$ (unbekannt). Löse $\laplace \Phi^x = 0$ in $\Omega$, $\Phi^x = \Phi(y-x)$ auf $\partial \Omega$ für alle $x\in\Omega$. Durch $G(x,y)\coloneqq \Phi(y-x)-\Phi^x(y)$ wird \emph{Green-Funktion} definiert. Diese liefert Lösungsformel, die nur bekannte Größen enthält. Problem: Bestimme zu gegebenem Gebiet $\Omega$ die Lösungen $\Phi^x$ der obigen DGL. Idee: Entferne Singularität durch \enquote{Reflexion} aus dem Gebiet.
+Betrachte Poisson-Problem auf beschränktem Gebiet $\Omega$. Leite Lösungsformel her; Diese enthält $\frac{\partial u}{\partial \nu}$ (unbekannt). Löse $\laplace \Phi^x = 0$ in $\Omega$, $\Phi^x = \Phi(y-x)$ auf $\partial \Omega$ für alle $x\in\Omega$. Durch $G(x,y)\coloneqq \Phi(y-x)-\Phi^x(y)$ wird \emph{Green-Funktion} definiert. Diese liefert Lösungsformel (für das Poisson-Problem auf diesem Gebiet), die nur bekannte Größen enthält. Problem: Bestimme zu gegebenem Gebiet $\Omega$ die Lösungen $\Phi^x$ der obigen DGL. Idee: Entferne Singularität durch \enquote{Reflexion} aus dem Gebiet.
 
 \subsubsection{Eindeutigkeit des DP mit Energiemethode}
 
@@ -117,7 +123,7 @@ Betrachte $u_t-\triangle u = 0$ auf $(0,\infty)\times \R^n$, $u(0,x)=u_0(x)$ auf
 
 \subsubsection{Mittelwerteigenschaft}
 
-Es gilt eine Mittelwerteigenschaft für Heatballs im parabolischen Zylinder. Hängt wegen der Heatball-Definition nur von vergangenen Zeiten ab.
+Es gilt eine Mittelwerteigenschaft für Heatballs im parabolischen Zylinder. Ein Heatball ist gegeben durch $(x,t) + \{(y,s): \Phi(y,s) > \lambda\}$, $(x,t)$ ist der "Mittelpunkt" des Heatballs, sieht ungefähr aus wie ein Ellipsoid, dessen oberster Punkt der Mittelpunkt ist. Hängt wegen der Heatball-Definition nur von vergangenen Zeiten ab.
 
 \subsubsection{Maximumsprinzip}
 
@@ -129,7 +135,13 @@ Wie bei der Poisson-Gleichung mittels Maximumsprinzip.
 
 \subsection{Wellengleichung}
 
-Betrachte $u_{tt}-\triangle u = 0$ in $\R\times \R^n$. Fall $n=1$: Reduziere auf Transportgleichung. Lösung ist so glatt wie Anfangswert. Fall $n$ ungerade: Reduziere auf parabolische Gleichung. Rechnen und Laplace-Trafo liefert Lösungsformel, in $n=3$ \emph{Kirschhoff'sche Formel} genannt. Lösung ist $C^2$, Regularitätsforderung steigt in der Dimension, die Gleichung glättet also nicht! Lösung hängt vom Anfangswert nur auf Sphären ab. Fall $n=2$: Absteigemethode, löse $n=3$-Fall aus. Lösung hängt vom Anfangswert auf Bällen ab. Die Lösungen unterscheiden sich also fundamental in geraden und ungeraden Raumdimensionen!
+Betrachte $u_{tt}-\triangle u = 0$ in $\R\times \R^n$. 
+
+Fall $n=1$: Reduziere auf Transportgleichung ($\mathrm{d}t^2-\mathrm{d}x^2=(\mathrm{d}t+\mathrm{d}x)(\mathrm{d}t-\mathrm{d}x)$, substituiere $v=u_t-u_x$ und löse zweimal Transportgleichung). Lösung ist so glatt wie Anfangswert. 
+
+Fall $n$ ungerade: Reduziere auf parabolische Gleichung. Rechnen und Laplace-Trafo liefert Lösungsformel, in $n=3$ \emph{Kirschhoff'sche Formel} genannt. Lösung ist $C^2$, Regularitätsforderung steigt in der Dimension, die Gleichung glättet also nicht! Lösung hängt vom Anfangswert nur auf Sphären ab. 
+
+Fall $n$ gerade: Ist $u(t,x_1,\dots,x_n)$ eine Lösung in Dimension $n$, so ist $\bar u(t,x_1,\dots,x_n,x_{n+1})=u(t,x_1,\dots,x_n)$ eine Lösung in Dimension $n+1$, also ungerade, dort haben wir aber eine Lösungsformel. Dann rumrechnen (Transformation von Ball auf Halbraum). Lösung hängt vom Anfangswert auf Bällen ab. Die Lösungen unterscheiden sich also fundamental in geraden und ungeraden Raumdimensionen!
 
 \subsubsection{Eindeutigkeit der Lösung der Wellengleichung}
 
