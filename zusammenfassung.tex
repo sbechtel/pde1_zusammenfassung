@@ -153,6 +153,12 @@ Energiemethode.
 
 Für $\Omega \subseteq \R^n$ offen ist $H^1(\Omega)$ der Sobolevraum zu $p=2$. Schwache Ableitungen sind eindeutig bestimmt (Fundamentallemma). Wir definieren als Teilraum $H^1_0(\Omega)\coloneqq \overline{C_c^\infty}^{\norm{\cdot}_{H^1(\Omega)}}$. Es sind $H^1(\Omega)$ sowie $H^1_0(\Omega)$ Hilberträume. Für $\Omega=(a,b)$ haben die Funktionen stetige Repräsentanten und es gilt der Hauptsatz.
 
+\subsubsection{stetige Repräsentanten: Sobolev-Ungleichung im Fall $p=n=1$}
+
+Es gilt $C_c^\infty(\R)$ dicht in $W^{1,1}(\R)$ (im Ganzraumfall geht die Dichtheit von $C^\infty$ leicht über Mollifier, sonst durch lokale Aussage hochhangeln, und kompakten Träger via. Cut-Off Funktion). Dann gilt für $f\in C_c^1(\R)$ die Identität $f(x)=\int_{-\infty}^x f'(y) \mathrm{d}y$, also die Abschätzung $|f(x)|\leq \int_\R |f'| \leq \|f\|_{W^{1,1}(\R)}$. Durch Fortsetzung erhält man die stetige Einbettung $\iota: W^{1,1}(\R)\hookrightarrow C(\R)$.
+
+Da $C(\R)$ dicht in $W^{1,1}(\R)$, finden wir zu $f\in W^{1,1}(\R)$ eine Folge $f_n\in C(\R)$ mit $f_n\to f$ in $\|\cdot\|_{W^{1,1}(\R)}$. Wegen der stetigen Einbettung gilt aber $\iota(f)=\lim_n f_n$ stetig als gleichmäßiger Limes stetiger Funktionen. Also besitzt $f$ einen stetigen Repräsentanten!
+
 \subsection{schwache Lösung des Dirichlet-Problem}
 
 Betrachte wieder $-\laplace u = f$ in $\Omega$, $u=0$ auf $\partial\Omega$. Eine Funktion $u\in H^1_0(\Omega)$ mit $\int \nabla u \nabla v = \int fv$ für alle $v\in H^1_0(\Omega)$ heißt \emph{schwache Lösung des (DP)}. 
@@ -194,9 +200,9 @@ Sei $A$ Differentialoperator, $f\in \D(\R^n)$. Ist $T$ Distribution mit $AT=\del
 
 \subsubsection{Träger von Distributionen}
 
-Sei $T\in \D'(\Omega)$, definiere $0_T\coloneqq \{ x\in\Omega: \text{ es ex. offene Umgebung } V \text{ von } x \text{ mit } T_V = 0 \}$, wobei $\langle T_V, \varphi \rangle \coloneqq \langle T, \tilde\varphi \rangle$ mit $\varphi\in \D'(V)$, $\tilde\varphi$ Fortsetzung von $\varphi$ auf $\Omega$ durch $0$. Setze $\supp T\coloneqq \Omega \setminus 0_T$, diese Menge heißt \emph{Träger} von $T$. Beispiele: Für $f\in L^1_{\loc}(\Omega)$ gilt $\supp T_f = \esssupp f$. Für $x\in\Omega$ gilt $\supp \delta_x = \{ x \}$. Für $T\in \D'(\Omega)$, $\varphi \in \D$ gilt: Ist $\supp T \cap \supp \varphi = \emptyset$, dann $\langle T, \varphi \rangle = 0$.
+Sei $T\in \D'(\Omega)$, definiere $0_T\coloneqq \{ x\in\Omega: \text{ es ex. offene Umgebung } V \text{ von } x \text{ mit } T_V = 0 \}$, wobei $\langle T_V, \varphi \rangle \coloneqq \langle T, \tilde\varphi \rangle$ mit $\varphi\in \D'(V)$, $\tilde\varphi$ Fortsetzung von $\varphi$ auf $\Omega$ durch $0$. Setze $\supp T\coloneqq \Omega \setminus 0_T$, diese Menge heißt \emph{Träger} von $T$. Beispiele: Für $f\in L^1_{\loc}(\Omega)$ gilt $\supp T_f = \supp f$ (zeige die Gleichheit über Kontaposition (also $x\not \in \supp f$ bzw. $\supp T_f$) und nutze Fundamentallemma bzw. $|\int_V f\varphi|\leq \|\varphi\|_\infty \int |f| = 0$). Für $x\in\Omega$ gilt $\supp \delta_x = \{ x \}$. Für $T\in \D'(\Omega)$, $\varphi \in \D$ gilt: Ist $\supp T \cap \supp \varphi = \emptyset$, dann $\langle T, \varphi \rangle = 0$.
 
-Definiere $\E(\Omega) \coloneqq C^\infty(\Omega)$. Es gelte $\varphi_j \to \varphi$ in $\E(\Omega)$, falls für ein $K\subseteq \Omega$ kompakt gilt: $\|D^\alpha \varphi_j - D^\alpha \varphi \|_{C(K)} \to 0$.  Identifiziere $\E'(\Omega)$ mit den Distributionen mit kompaktem Träger.
+Definiere $\E(\Omega) \coloneqq C^\infty(\Omega)$. Es gelte $\varphi_j \to \varphi$ in $\E(\Omega)$, falls für alle $K\subseteq \Omega$ kompakt gilt: $\|D^\alpha \varphi_j - D^\alpha \varphi \|_{C(K)} \to 0$.  Identifiziere $\E'(\Omega)$ mit den Distributionen mit kompaktem Träger (durch Cut-Off Funktion auf dem Träger der Distribution können Elemente aus $\E(\Omega)$ mit solchen aus $\D(\Omega)$ identifiziert werden).
 
 \subsubsection{Faltung von Distributionen mit kompaktem Träger}
 
