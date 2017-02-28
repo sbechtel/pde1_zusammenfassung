@@ -206,7 +206,9 @@ Definiere $\E(\Omega) \coloneqq C^\infty(\Omega)$. Es gelte $\varphi_j \to \varp
 
 \subsubsection{Faltung von Distributionen mit kompaktem Träger}
 
-Seien $S,T\in \D'(R^n)$ und mindestens eine habe kompakten Träger, dann definiere die Faltung durch $\langle S*T, \varphi \rangle \coloneqq (S*(T*\tilde\varphi))(0)$ wobei $\varphi\in\D$. Hat immer höchstens eine Distribution keinen kompakten Träger, so gelten die bekannten Regeln (Kommutativität, Assoziativität, Summe der Träger, ...).  Sind die Träger nicht kompakt, so gilt Assoziativität nicht: $1*(\delta'*H)=1*\delta=1\neq 0=0*H=(1*\delta')*H$.
+Motivation: Sind $f,g\in L^1_\mathrm{loc}(\R^n)$ und $\varphi\in \D$, so gilt $$\langle f\ast g, \varphi \rangle = \int \int f(y) g(x-y) \varphi(x) \mathrm{d}y \mathrm{d}x = \int f(y) \int \tilde g(y-x) \varphi(x) \mathrm{d}x \mathrm{d}y = \langle f, \tilde g \ast \varphi \rangle,$$ definiere daher auch allgemein $\langle T\ast S, \varphi \rangle \coloneqq \langle T, \tilde S \ast \varphi \rangle$, sofern mindestens eine von beiden Distributionen kompakten Träger hat.
+
+Hat immer höchstens eine Distribution keinen kompakten Träger, so gelten die bekannten Regeln (Kommutativität, Assoziativität, Summe der Träger, ...).  Sind die Träger nicht kompakt, so gilt Assoziativität nicht: $1*(\delta'*H)=1*\delta=1\neq 0=0*H=(1*\delta')*H$.
 
 \subsection{Schwartz-Raum}
 
@@ -221,11 +223,11 @@ Es ist $\Sc$ abgeschlossen unter Faltung und Multiplikation. Es gilt der Faltung
 
 \subsubsection{Fouriertrafo auf $L^2$}
 
-TODO
+Approximiere $f\in L^2(\R^n)$ mit Testfunktionen. Aus der Konvergenz in $L^2(\R^n)$ folgt Konvergenz der regulären Distributionen in $\Sc'$, also $\hat f \in L^2(\R^n)$.
 
 \subsection{Temperierte Distributionen}
 
-Betrachte den Dualraum $\Sc'$ von $\Sc$. Die Elemente heißen temperierte Distributionen. Es gilt $\Sc'\neq \D'$, denn $e^x\in \Sc'$, jedoch $e^x\, e^{ie^x} \not\in \Sc'$, also auch nicht $L^1_{\loc} \hookrightarrow \Sc'$. Wir statten $\Sc'$ mit schwach-*-Topologie aus.
+Betrachte den Dualraum $\Sc'$ von $\Sc$. Die Elemente heißen temperierte Distributionen. Es gilt $\Sc'\neq \D'$, denn $e^x\not\in \Sc'$ (denn $\varphi\coloneqq e^{-x^2/2}\in \Sc$, aber $\langle e^x, \varphi \rangle = \int e^{x^2/x} = \infty$), jedoch $e^x\, e^{ie^x} \in \Sc'$ (ÜA G18, das Problem liegt also nicht im betragsmäßigen Wachstum), also auch nicht $L^1_{\loc} \hookrightarrow \Sc'$. Wir statten $\Sc'$ mit schwach-*-Topologie aus.
 
 Sei $p$ Polynom, $\psi\in \Sc$, dann sind folgende Operationen auf $\Sc'$ definiert:
 
@@ -248,7 +250,7 @@ Die Fouriertrafo ist Isomorphismus $\Sc'\to\Sc'$. Es gelten folgende Regeln:
 \subsubsection{Beispiele für die Fouriertrafo auf $\Sc'$}
 
 \begin{itemize}
-    \item $\hat\delta = 1$,
+    \item $\hat\delta = 1$, denn $\langle \hat\delta, \varphi \rangle = \hat \varphi(0) = \int e^{-ix0} \varphi(x) \mathrm{d}x = \langle 1, \varphi \rangle$,
     \item $p(x)=\sum_{|\alpha| \leq m} a_\alpha (x^\alpha 1)$ Polynom, dann $\hat p = \sum_{|\alpha| \leq m} a_\alpha i^{|\alpha|} D^\alpha \delta$.
 \end{itemize}
 
@@ -268,7 +270,7 @@ Die Ableitungsregel gilt auf $\Sc$ immer und auf $H^k$ für Multiindices $\alpha
 
 \subsection{Fixpunktsätze}
 
-Es gilt der Brownsche Fixpunktsatz: Ist $B$ die abgeschlossene Einheitskugel in $\R^n$ und $T:B\to B$ stetig, so besitzt $T$ einen Fixpunkt. Man zeigt damit den Fixpunktsatz von Schauder: Sei $X$ B.R. und $K\subseteq X$ nicht-leer, kompakt, konvex sowie $T:K\to K$ stetig, so besitzt $T$ einen Fixpunkt. Es gilt außerdem folgende Variante: Sei $X$ B.R., $T:X\to X$ stetig und kompakt sowie $\{ u\in X: u = \alpha Tu \text{ für ein } \alpha \in [0,1]\}$ beschränkt, dann besitzt $T$ einen Fixpunkt.
+Es gilt der Browersche Fixpunktsatz: Ist $B$ die abgeschlossene Einheitskugel in $\R^n$ und $T:B\to B$ stetig, so besitzt $T$ einen Fixpunkt. Man zeigt damit den Fixpunktsatz von Schauder: Sei $X$ B.R. und $K\subseteq X$ nicht-leer, kompakt, konvex sowie $T:K\to K$ stetig, so besitzt $T$ einen Fixpunkt. Es gilt außerdem folgende Variante: Sei $X$ B.R., $T:X\to X$ stetig und kompakt sowie $\{ u\in X: u = \alpha Tu \text{ für ein } \alpha \in [0,1]\}$ beschränkt, dann besitzt $T$ einen Fixpunkt.
 
 \subsubsection{Anwendung auf nicht-lineares Problem}
 
