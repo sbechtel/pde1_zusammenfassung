@@ -272,9 +272,9 @@ Die Ableitungsregel gilt auf $\Sc$ immer und auf $H^k$ für Multiindices $\alpha
 
 Es gilt der Browersche Fixpunktsatz: Ist $B$ die abgeschlossene Einheitskugel in $\R^n$ und $T:B\to B$ stetig, so besitzt $T$ einen Fixpunkt. Man zeigt damit den Fixpunktsatz von Schauder: Sei $X$ B.R. und $K\subseteq X$ nicht-leer, kompakt, konvex sowie $T:K\to K$ stetig, so besitzt $T$ einen Fixpunkt. Es gilt außerdem folgende Variante: Sei $X$ B.R., $T:X\to X$ stetig und kompakt sowie $\{ u\in X: u = \alpha Tu \text{ für ein } \alpha \in [0,1]\}$ beschränkt, dann besitzt $T$ einen Fixpunkt.
 
-\subsubsection{Anwendung auf nicht-lineares Problem}
+\subsubsection{Anwendung auf nichtlineares Problem}
 
-Betrachte $-\laplace u = f(u), u|_\Omega = 0$, wobei $f$ (Lipschitz?) stetig, beschränkt und $\Omega$ beschränkt ist. Beweisidee: Finde $M_0$ sodass $C\coloneqq \{ u\in H^1_0(\Omega): \|\nabla u\| \leq M_0\}$ nicht-leere, kompakte, konvexe Menge ist. $T = (-\nabla)^{-1}(f(\cdot)): H^1_0\to H^1_0$ ist stetig, Schauder liefert Fixpunkt.
+Betrachte $-\laplace u = f(u), u|_\Omega = 0$, wobei $f$ (Lipschitz?) stetig, beschränkt und $\Omega$ beschränkt ist. Beweisidee: Finde $M_0$ mit $C\coloneqq \{ u\in H^1_0(\Omega): \|\nabla u\| \leq M_0\}$ nicht-leer, kompakt und konvex. $T = (-\Delta)^{-1}(f(\cdot)): H^1_0\to H^1_0$ ist stetig, Schauder liefert Fixpunkt.
 
 \subsection{Methode der Unter- und Oberlösungen}
 
@@ -334,7 +334,7 @@ Betrachte \emph{abstraktes Cauchy-Problem}: $X$ Banachraum, $A:D(A) \to X$ Opera
 
 \subsection{$C_0$-Halbgruppen}
 
-Eine Familie $T\coloneqq (T(t))_{t>0}$ von beschränkten, linearen Operatoren auf $X$ heißt \emph{$C_0$-Halbgruppe} auf $X$, falls gilt: $T(0)=\id$, $T(s+t)=T(s)T(t)$ sowie für alle $f\in X$ gilt: $t\mapsto T(t)f$ stetig. Man nennt $T$ \emph{Kontraktionshalbgruppe}, falls $\|T(t)\| \leq 1$ für alle $t\geq 0$ gilt.
+Eine Familie $T\coloneqq (T(t))_{t\geq 0}$ von beschränkten, linearen Operatoren auf $X$ heißt \emph{$C_0$-Halbgruppe} auf $X$, falls gilt: $T(0)=\id$, $T(s+t)=T(s)T(t)$ sowie für alle $f\in X$: $t\mapsto T(t)f$ stetig. Man nennt $T$ \emph{Kontraktionshalbgruppe}, falls $\|T(t)\| \leq 1$ für alle $t\geq 0$ gilt.
 
 \subsection{Generator einer Halbgruppe}
 
