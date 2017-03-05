@@ -61,6 +61,7 @@
 \DeclareMathOperator{\loc}{loc}
 \DeclareMathOperator{\pv}{pv}
 \DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\e}{e}
 
 \begin{document}
 
@@ -365,6 +366,12 @@ Der Generator ist dicht definiert und abgeschlossen. Beweisidee: Dicht definiert
 Sei $A$ ein dicht definierter Operator auf $X$. Dann erzeugt $A$ eine $C_0$-Halbgruppe mit $\|T(t)\| \leq 1$ gdw. $(0,\infty) \subseteq \rho(A)$ und $\|(\lambda-A)^{-1}\| \leq \frac{1}{\lambda}$ für alle $\lambda > 0$. 
 
 Beweisidee: Hinrichtung: Zeige $R_\lambda f\coloneqq \int_{0}^{\infty} e^{-\lambda t}T(t)f \, \mathrm{dt}$ ist die Resolvente zu $\lambda$ von $A$ ausgewertet an $f$. Für jene Darstellung folgen die Eigenschaften leicht. Rückrichtung: Regularisiere $A$ durch den beschränkten Operator $A_\lambda \coloneqq \lambda A (\lambda-A)^{-1}$. Es konvergiert $A_\lambda$ stark gegen $A$, $T_\lambda(t) \coloneqq e^{tA_\lambda}$ definiert stark stetige Kontraktionshalbgruppe zu $A_\lambda$. Es konvergiert $T_\lambda$ gegen eine Halbgruppe $T$, dessen Generator $A$ ist.
+
+\subsubsection{Motivation für die Yosida-Approximation und Hille-Ansatz}
+
+In $\C$ gilt $\frac{\lambda}{\lambda-a}=1+\frac{a}{\lambda-A}\to 1$ für $\lambda\to\infty$. Dies motiviert $\lambda R(\lambda,A)f\to f$. Wir wollen $A$ stark approximieren, also schreiben wir $\lambda AR(\lambda,A)$ und da $A$ und $R(\lambda,A)$ auf $D(A)$ kommutieren, folgt $\lambda AR(\lambda,A)\to A$ stark auf $D(A)$. Durch ausmultiplizieren erhalten wir außerdem $\lambda AR(\lambda,A)=\lambda^2R(\lambda,A)-\lambda$, also sind dies beschränkte Operatoren.
+
+Hille ging einen direkteren Weg: Im Reellen gilt die Formel $\e^x=\lim_n (1+x/n)^n=\lim_n (1-x/n)^{-n}$. Für $x$ wollen wir $tA$ einsetzen. Wir schreiben dazu $(1-\frac{t}{n}x)^{-1}=\frac{n}{t}(\frac{n}{t}-x)^{-1}$, stellen fest, dass im Wesentlichen die Resolvente übrig bleibt, und erhalten die Hille-Approximation $\e^{tA}=\lim_n (\frac{n}{t}R(\frac{n}{t},A))^n$.
 
 \subsection{Anwendung Hille-Yosida auf parabolisches Problem}
 
