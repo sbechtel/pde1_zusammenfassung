@@ -268,6 +268,12 @@ Die Fouriertrafo ist Isomorphismus $\Sc'\to\Sc'$. Es gelten folgende Regeln:
 
 Ist $AT=\delta$, dann $p(i\xi)\hat T = 1$, löse algebraische Gleichung. Rücktrafo liefert Fundamentallösung.
 
+\subsection{Einbettung von Funktionenräume in die Distributionenräume}
+
+Es gilt: $\D \subset \Sc \subset L^p \hookrightarrow \Sc' \hookrightarrow D'$.
+
+Die erste Einbettung ist klar. Dass $\Sc \subset L^\infty$ ist auch klar. Außerdem gilt $\Sc \subset L^1$ nach Hölder: Schreibe $f(x)=(1+|x|^2)^{-N}(1+|x|^2)^Nf(x)$, für $N$ groß genug ist der erste Faktor in $L^1$ und da $(1+|x|^2)^N$ Polynom ist der hintere Faktor beschränkt. Mit Interpolation folgt also $\Sc \subset L^p$. Mit Hölder und $\Sc \subset L^q$ folgt $L^p \hookrightarrow \Sc'$. Schließlich ist $\Sc'\to \D'$ wieder klar.
+
 \subsection{Fouriertransformation auf verschiedenen Räumen}
 
 Es gilt $\F: L^1(\R^n) \to C_0(\R^n)$ nach Riemann-Lebesgue mit $\F(f)(x)\coloneqq \int_{\R^n} e^{i\langle x,y \rangle}f(y) \, \mathrm{dy}$. Eingeschränkt auf $L^1(\R^n) \cap L^2(\R^n)$ ist der Wertebereich $L^2$ und die Abbildung ist isometrisch. Es gibt eine Fortsetzung zu einem unitären Operator $\F: L^2(\R^n)\to L^2(\R^n)$. Wegen $L^p$-Interpolation folgt außerdem $\F: L^p(\R^n)\to L^q(\R^n)$ stetig für $1 \leq p \leq 2$ (beachte $C_0(\R^n) \hookrightarrow L^\infty(\R^n)$). Von $\Sc\to \Sc$ ist $\F$ ebenfalls Isomorphismus, somit auch von $\Sc'\to \Sc'$.
