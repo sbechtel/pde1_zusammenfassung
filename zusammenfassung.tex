@@ -155,13 +155,19 @@ Betrachte $u(t,x)\coloneqq \sin(t+x)$. Dann ist $u$ Lösung der Wellengleichung 
 
 \subsection{Sobolevräume}
 
-Für $\Omega \subseteq \R^n$ offen ist $H^1(\Omega)$ der Sobolevraum zu $p=2$. Schwache Ableitungen sind eindeutig bestimmt (Fundamentallemma). Wir definieren als Teilraum $H^1_0(\Omega)\coloneqq \overline{C_c^\infty}^{\norm{\cdot}_{H^1(\Omega)}}$. Es sind $H^1(\Omega)$ sowie $H^1_0(\Omega)$ Hilberträume. Für $\Omega=(a,b)$ haben die Funktionen stetige Repräsentanten und es gilt der Hauptsatz.
+Es bezeichne $W^{1,p}(\Omega)$ den Sobolevraum mit einer schwachen Ableitung in $L^p(\Omega)$. Im Fall $p=2$ schreiben wir $H^1(\Omega)$. Schwache Ableitungen sind nach Fundamentallemma eindeutig bestimmt. Wir definieren in $W^{1,p}(\Omega)$ den Teilraum $W^{1,p}_0(\Omega) \coloneqq \overline{C_c^\infty(\Omega)}^{\|\cdot\|_{W^{1,p}(\Omega)}}$. Es sind $H^1(\Omega)$ und $H^1_0(\Omega)$ Hilberträume.
 
-\subsubsection{stetige Repräsentanten: Sobolev-Ungleichung im Fall $p=n=1$}
+Für $\Omega=(a,b)$ hat $u\in W^{1,p}(a,b)$ einen stetigen Representanten: Fixiere $x_0\in (a,b)$ und setze $\tilde u(x)=\int_{x_0}^x u'$. Dann $\int (\tilde u-u)\varphi'=\int -u'\varphi-u\varphi'=\int (u'-u')\varphi=0$, also $\tilde u-u=C$ f.ü., also $\tilde u-C$ stetiger Repräsentant (sogar gleichmäßig stetig, also auch in $C([a,b])$!). Insbesondere gilt also auch der Hauptsatz!
 
-Es gilt $C_c^\infty(\R)$ dicht in $W^{1,1}(\R)$ (im Ganzraumfall geht die Dichtheit von $C^\infty$ leicht über Mollifier, sonst durch lokale Aussage hochhangeln, und kompakten Träger via. Cut-Off Funktion). Dann gilt für $f\in C_c^1(\R)$ die Identität $f(x)=\int_{-\infty}^x f'(y) \mathrm{d}y$, also die Abschätzung $|f(x)|\leq \int_\R |f'| \leq \|f\|_{W^{1,1}(\R)}$. Durch Fortsetzung erhält man die stetige Einbettung $\iota: W^{1,1}(\R)\hookrightarrow C(\R)$.
+Zusätzlich ist die Einbettung $W^{1,p}(a,b) \hookrightarrow C(a,b)$ stetig: $|u(x)| \leq |C| + \int_{x_0}^x |u'| \leq |C| + \int |u'| \leq |C| +\|u\|_{W^{1,p}(a,b)}$. Für $u\in C^1(a,b)$ können wir nach Mittelwertsatz der Integralrechnung $|C| \leq 1/(b-a) \|u\|_{L^1(a,b)}$ realisieren.
 
-Da $C(\R)$ dicht in $W^{1,1}(\R)$, finden wir zu $f\in W^{1,1}(\R)$ eine Folge $f_n\in C(\R)$ mit $f_n\to f$ in $\|\cdot\|_{W^{1,1}(\R)}$. Wegen der stetigen Einbettung gilt aber $\iota(f)=\lim_n f_n$ stetig als gleichmäßiger Limes stetiger Funktionen. Also besitzt $f$ einen stetigen Repräsentanten!
+Aus der gleichmäßigen Stetigkeit der Repräsentanten folgt die Existenz eines stetigen Randoperators $W^{1,p}(a,b)\to L^p(\partial (a,b))=L^p(\{a,b\})$: $\|u\|_{L^p(\{a,b\})} = |u(a)|+|u(b)| \leq 2 \|u\|_{C(a,b)} \leq C \|u\|_{W^{1,p}(a,b)}$.
+
+Diese Resultate lassen sich verallgemeinern in höhere Raumdimensionen und auf Lipschitz-Gebiete, dabei sind ersteres Sobolev-Einbettungssätze und letzteres die Existenz eines Trace-Operators. Die Strategie ist dann, auf geeigneten dichten Teilmengen solche Abschätzungen zu zeigen. In $\R^d$ ist $C_c^\infty(\R^d)$ eine solche dichte Teilmenge (nutze Mollifier und Cut-Off-Funktion). Außerdem gibt es für Lipschitz-Gebiete einen Fortsetzungsoperator $W^{1,p}(\Omega) \to W^{1,p}(\R^d)$, somit ist $C^\infty(\Omega)$ (Achtung: kein kompakter Träger mehr!) dicht in $W^{1,p}(\Omega)$.
+
+Ist $\alpha\in (0,1)$ und $k,r \in \N$, $p\geq 1$ sodass $(k-r-\alpha)/n=1/p$, dann gibt es eine stetige Einbettung $W^{k,p}(\Omega) \hookrightarrow C^{r,\alpha}(\Omega)$.
+
+Außerdem kann man Regularität investieren, um Integrierbarkeit zu erhalten: ist $k>l$ und $1\leq p \leq q < \infty$ mit $k-l < n/p$ und $\frac{1}{q}=\frac{1}{p}-\frac{k-l}{n}$, dann $W^{k,p}(\Omega) \hookrightarrow W^{l,q}(\Omega)$.
 
 \subsection{schwache Lösung des Dirichlet-Problem}
 
