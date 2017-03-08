@@ -35,6 +35,7 @@
 \newcommand{\norm}[1]{\|#1\|}
 \newcommand{\laplace}{\triangle}
 \newcommand{\circum}{\text{\textasciicircum}}
+\newcommand{\dd}{\frac{\mathrm{d}}{\mathrm{d}x}}
 
 % Umgebungen für Definitionen, Sätze, usw.
 
@@ -108,7 +109,7 @@ Betrachte $-\laplace u = f$ in $\Omega$, $u=g$ auf $\partial \Omega$. Sind $u_1,
 
 \subsubsection{Glattheit harmonischer Funktionen}
 
-Ist $u\in C(\Omega)$ mit Mittelwerteigenschaft, so ist $u\in C^\infty(\Omega)$, somit $h$ harmonisch. Beweis: Geschickte Nutzung von Mollifiern.
+Ist $u\in C(\Omega)$ mit Mittelwerteigenschaft, so ist $u\in C^\infty(\Omega)$, somit $h$ harmonisch. Beweis: Geschickte Nutzung von Mollifiern. Alternativer Beweis: Jede harmonische Funktion ist Realteil einer holomorphen Funktion. Holomorphe Funktionen sind komplex unendlich oft differenzierbar, also auch reell unendlich oft differenzierbar, also ist der Realteil eine glatte Funktion.
 
 \subsubsection{Green'sche Funktionen}
 
@@ -372,6 +373,10 @@ Beweisidee: Hinrichtung: Zeige $R_\lambda f\coloneqq \int_{0}^{\infty} e^{-\lamb
 In $\C$ gilt $\frac{\lambda}{\lambda-a}=1+\frac{a}{\lambda-A}\to 1$ für $\lambda\to\infty$. Dies motiviert $\lambda R(\lambda,A)f\to f$. Wir wollen $A$ stark approximieren, also schreiben wir $\lambda AR(\lambda,A)$ und da $A$ und $R(\lambda,A)$ auf $D(A)$ kommutieren, folgt $\lambda AR(\lambda,A)\to A$ stark auf $D(A)$. Durch ausmultiplizieren erhalten wir außerdem $\lambda AR(\lambda,A)=\lambda^2R(\lambda,A)-\lambda$, also sind dies beschränkte Operatoren.
 
 Hille ging einen direkteren Weg: Im Reellen gilt die Formel $\e^x=\lim_n (1+x/n)^n=\lim_n (1-x/n)^{-n}$. Für $x$ wollen wir $tA$ einsetzen. Wir schreiben dazu $(1-\frac{t}{n}x)^{-1}=\frac{n}{t}(\frac{n}{t}-x)^{-1}$, stellen fest, dass im Wesentlichen die Resolvente übrig bleibt, und erhalten die Hille-Approximation $\e^{tA}=\lim_n (\frac{n}{t}R(\frac{n}{t},A))^n$.
+
+\subsubsection{Motivation: Lagrange-Ansatz zur Lösung der Transportgleichung}
+
+Betrachte $\partial_t u(t,x)-\partial_x u(t,x)=0$. Wir wollen eine Lösung via $u(t,x)=\e^{t\dd}f$ finden. Dazu machen wir eine formale Potenzreihenrechnung: $$\e^{t\partial_x}f(x)=\sum_{n=0}^\infty \frac{t^n\partial_x^n}{n!}f(x)=\sum_{n=0}^\infty \frac{f^{(n)}(x)}{n!}t^n=f(x+t).$$ Die letzte Gleichheit ist dabei Taylor. Diese Formel definiert die Linkstranslationshalbgruppe und ist in der Tat die Lösung obiger Gleichung.
 
 \subsection{Anwendung Hille-Yosida auf parabolisches Problem}
 
