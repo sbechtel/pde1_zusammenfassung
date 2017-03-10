@@ -231,7 +231,7 @@ Sei $\Sc\coloneqq \Sc(\R^n)\coloneqq \{ f\in C^\infty(\R^n): |f|_{\alpha,\beta} 
 
 Definiere zu $u$ die (anti-symmetrische) Fouriertrafo durch $\hat u(\xi)\coloneqq \int e^{-ix\xi}u(x) \, \mathrm{dx}$ für $\xi\in\R^n$. Die Fouriertrafo ist Isomorphismus von $\Sc$ nach $\Sc$, $(\hat \cdot )^{-1} = \check\cdot$.
 
-Es ist $\Sc$ abgeschlossen unter Faltung und Multiplikation. Es gilt der Faltungssatz $(f*g)^{\mbox{\textasciicircum}} = \hat f \cdot \hat g$ sowie $(f\cdot g)^{\mbox{\textasciicircum}} = (2\pi)^{-n} \, \hat f \cdot \hat g$ sowie die Ableitungsregeln $(D^\alpha u)^\circum(\xi) = i^{|\alpha|} \xi^\alpha \hat u(\xi)$ als auch $(x^\alpha u)^\circum(\xi) = (-i)^{|\alpha|} D^\alpha \hat u(\xi)$. Es gilt die \emph{Parseval/Plancherel} Gleichung: $\int f\bar g \, \mathrm{dx} = (2\pi)^{-n} \int \hat f \bar{\hat g} \, \mathrm{d\xi}$.
+Es ist $\Sc$ abgeschlossen unter Faltung und Multiplikation. Es gilt der Faltungssatz $(f*g)^{\mbox{\textasciicircum}} = \hat f \cdot \hat g$ sowie $(f\cdot g)^{\mbox{\textasciicircum}} = (2\pi)^{-n} \, \hat f \cdot \hat g$ sowie die Ableitungsregeln $(D^\alpha u)^\circum(\xi) = i^{|\alpha|} \xi^\alpha \hat u(\xi)$ als auch $(x^\alpha u)^\circum(\xi) = (-i)^{|\alpha|} D^\alpha \hat u(\xi)$. Es gilt die \emph{Parseval/Plancherel} Gleichung: $\int f\bar g \, \mathrm{dx} = (2\pi)^{-n} \int \hat f \bar{\hat g} \, \mathrm{d\xi}$. Außerdem gilt für $f,g\in \Sc$ die Identität $\int \hat f g = \int f \hat g$, sie wird gleich die Motivation für die Definition der Fouriertrafo einer temperierten Distribution sein. 
 
 \subsubsection{Fouriertrafo auf $L^2$}
 
@@ -348,7 +348,7 @@ Beispiel für Brownsche Bewegung: $P(t,x,y)\coloneqq G_t(x-y)$. Auf $BUC(\R^n)$ 
 
 \subsection{abstraktes Cauchy-Problem}
 
-Betrachte \emph{abstraktes Cauchy-Problem}: $X$ Banachraum, $A:D(A) \to X$ Operator, dann soll $u: [0,\infty) \to X$ gefunden werden mit $u'(t) = Au(t)$ sowie $u(0)=u_0$ für ein $u_0\in X$. Beispiel: $X=L^2(\Omega)$, $A=\triangle$, $D(A)=H^2(\Omega)$. Aus einer PDE wird also eine banachraumwertige ODE.
+Betrachte \emph{abstraktes Cauchy-Problem}: $X$ Banachraum, $A:D(A) \to X$ Operator, dann soll $u: [0,\infty) \to X$ gefunden werden mit $u(t)\in D(A)$ und $u'(t) = Au(t)$ für $t>0$ sowie $u(0)=u_0$ für ein $u_0\in X$. Beispiel: $X=L^2(\Omega)$, $A=\triangle$, $D(A)=H^2(\Omega)$. Aus einer PDE wird also eine banachraumwertige ODE.
 
 \subsection{$C_0$-Halbgruppen}
 
